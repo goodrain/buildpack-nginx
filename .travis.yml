@@ -1,0 +1,17 @@
+sudo: required
+services:
+- docker
+git:
+  depth: 1
+before_install:
+- docker pull debian:stretch-slim
+script:
+- make all
+deploy:
+  provider: releases
+  api_key:
+    secure: pWr0CjzUmajwglufpC2I91nB8K1wkSz4sS3n3PRokS670zdpAolkSuGN+lLUD2EcYocyHAXXXsezdRBYpdH8DPOqupdWq8jnGIqxV4lv/l70Xo1KWxTzj3fuDVUo+Y4k5f3ZSw9NDscA8L3EcxoPV5mkqu9Yp96VLZi6sxUu8cE7K6PwWCh9nwhDhGogW7EQdtnrOWXmWuPRAEBzG7ehb4QxI7M0sTg+kByUAUAGErKA4WBzqBIYMMJYgmqXe9lnyBZGRjkeLjWYGLsTJudbQ2BfLS8ZAttjhmeMHRMssKNlkhEfzs/o36L66tz1VdUG8noO2YjwQTf832yKmb3Iwq348sm8QlUlCuc+/4WLGgcYeta8/j7YU6rLif/55ylufhIgf62hKX7yw64SVSnzepb784tfMw2t4yLBMynF0xXV6i2S2VSNh1kuDUDzxiiUo+WMzqij2Gf7n83job/aySyUhlff8QVbb+zqd0jF64nFOdfGLeWxRv3OIhQmWp7fUyYxJJixaUtFGI6f+GdD93OOtdH5cEDmLP2VqwjNCBC5iqVjdBEboDGKEsuEe4ooTx7QXvXdohVyLY1gs/9BZr9xGxROOs6jVGuwJ4TUMLH5gMtssMmNRvS898yiwyNsnzTewhsTau38toQCPe3+I7eP/Ox1eJjbKj0NrxwC9no=
+  file: package/nginx-1.14.2.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
